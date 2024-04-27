@@ -1,5 +1,6 @@
 ---
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
+import ImageOfMe from "../images/me.jpg";
 // import { Icon } from 'astro-icon/components';
 import Layout from "../layouts/Layout.astro";
 // let allPosts = await Astro.glob('./blog/**/index.mdx');
@@ -38,27 +39,31 @@ let socialMedia = [
   title="Mike Constantino"
   description="Hi! I'm Mike - software engineer based in Orlando, FL currently doing cool things for DigitalOcean."
 >
-  <main
-    class="mx-auto flex max-w-screen-xl flex-col p-4 pt-2 lg:flex-row xl:p-0"
-  >
-    <section class={`card flex-grow flex flex-row `}>
-      <div class="flex flex-col justify-between p-6">
-        <div>
-          <h1
-            class="inline-block bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 bg-clip-text font-display text-4xl font-semibold text-transparent xl:text-5xl"
+  <section class={`card flex-grow flex flex-row `}>
+    <div class="flex flex-row items-center justify-between gap-9 p-6">
+      <div>
+        <h1
+          class="inline-block bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 bg-clip-text font-display text-6xl font-semibold text-transparent"
+        >
+          Mike Constantino
+        </h1>
+        <h2 class="pt-1 text-4xl font-normal">
+          software engineer coding for <a href="#">kicks</a> and <a href="#"
+            >cash</a
           >
-            Hi! I'm Mike.
-          </h1>
-          <h2 class="text-2xl font-normal leading-7 xl:text-3xl">
-            I'm a Software Engineer based in Orlando, FL
-          </h2>
-          <p class="pt-4 xl:text-lg">
-            I'm currently helping make the cloud simple at DigitalOcean,
-            delivering cool features for cool businesses. In my spare time, I
-            contribute to the 3D printing tinkering community and help people
-            make cool things.
-          </p>
-        </div>
+        </h2>
+        <p class="pt-4 text-lg">
+          I'm currently making waves at DigitalOcean 🌊, teaming up with the
+          Identity Access Management crew to help make the cloud simple and
+          accessible 🤙
+        </p>
+      </div>
+      <div class="flex flex-shrink-0 flex-col justify-center">
+        <Image
+          alt="Picture of me"
+          class="max-w-xs rounded-full"
+          src={ImageOfMe}
+        />
         <!-- <div class="flex justify-start mt-4 items-center"> -->
         <!-- {socialMedia.map(sm => ( -->
         <!-- <a href={sm.url} target="_blank" class="xl:mr-4 mr-3 xl:p-4 md:p-3 p-2 rounded-full bg-base-100/50 hover:bg-base-200/75 hover:scale-105 active:bg-base-300 active:scale-95 transition-all backdrop-blur-md" title={sm.name}> -->
@@ -67,10 +72,18 @@ let socialMedia = [
         <!-- ))} -->
         <!-- </div> -->
       </div>
-      <!-- <div class="flex-shrink-0 flex-col flex justify-end"> -->
-      <!-- <Picture formats={['avif', 'webp', 'png']} alt="Picture of me" class="w-0 sm:w-[200px] md:w-[300px] aspect-[3/4.04]" widths={[600, 300]} loading="eager" sizes="(max-width: 640px) 0px, (max-width: 768px) 200px, 300px" src={import('../images/me.png')}/> -->
+      <!-- <div class="flex flex-shrink-0 flex-col justify-end"> -->
+      <!--   <Picture -->
+      <!--     formats={["avif", "webp", "png"]} -->
+      <!--     alt="Picture of me" -->
+      <!--     class="aspect-[3/4.04] w-0 sm:w-[200px] md:w-[300px]" -->
+      <!--     widths={[600, 300]} -->
+      <!--     loading="eager" -->
+      <!--     sizes="(max-width: 640px) 0px, (max-width: 768px) 200px, 300px" -->
+      <!--     src={import("../images/me.png")} -->
+      <!--   /> -->
       <!-- </div> -->
-    </section>
+    </div>
     <!-- <section class="flex-none p-3 lg:ml-2 lg:w-80"> -->
     <!-- 	<h2 class="font-display font-bold text-2xl mb-2">Articles</h2> -->
     <!-- 	<div class="lg:grid-cols-1 grid sm:grid-cols-3 gap-4 mb-2 grid-cols-1"> -->
@@ -88,5 +101,5 @@ let socialMedia = [
     <!-- 	</div> -->
     <!-- 	<a rel="prefetch" href="/blog" class="text-blue-600 dark:text-blue-400 hover:underline">See all articles →</a> -->
     <!-- </section> -->
-  </main>
+  </section>
 </Layout>

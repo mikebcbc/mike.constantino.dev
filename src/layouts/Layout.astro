@@ -53,6 +53,8 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <Header />
-    <slot />
+    <main class="mx-auto max-w-screen-lg">
+      <slot />
+    </main>
   </body>
 </html>
