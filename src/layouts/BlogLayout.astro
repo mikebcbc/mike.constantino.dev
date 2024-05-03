@@ -1,0 +1,67 @@
+---
+import { Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+// import TableOfContents from '../components/TableOfContents.astro';
+import "../styles/blog.css";
+
+const { frontmatter, headings } = Astro.props;
+---
+
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  blog={true}
+>
+  <main
+    class="prose dark:prose-a:text-blue-400 prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg container mx-auto max-w-screen-lg p-4"
+  >
+    <div class="not-prose mb-2">
+      <a rel="prefetch" class="link" href="/blog">← Go Back</a>
+    </div>
+    <h1 class="mb-0 font-display font-bold">{frontmatter.title}</h1>
+    <p class="mb-4 mt-3 text-xl">{frontmatter.description}</p>
+    <div class="mb-2 flex items-center pl-2">
+      <span
+        >{
+          new Date(frontmatter.pubDate).toLocaleDateString("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }</span
+      >
+      <span class="divider divider-horizontal"></span>
+      <span class="badge badge-outline">{frontmatter.minutesRead} min read</span
+      >
+    </div>
+    <div class="flex justify-center gap-6">
+      <article class="w-full max-w-prose">
+        <Picture
+          transition:name={frontmatter.title}
+          formats={["avif", "webp", "jpeg"]}
+          class="loading-shimmer mb-6 mt-0 aspect-[16/9] w-full"
+          alt=""
+          widths={[1600, 800, 600, 400]}
+          sizes="(max-width: 800px) 100vw, 800px"
+          src={frontmatter.image.url}
+          loading="eager"
+        />
+        <slot />
+      </article>
+      <!-- <TableOfContents headings={headings} /> -->
+    </div>
+  </main>
+  <footer class="container mx-auto max-w-screen-md p-4 text-center">
+    &copy; {new Date().getFullYear()} Mike Constantino
+  </footer>
+  <style>
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("/fonts/JetBrainsMono.woff2") format("woff2");
+      font-display: fallback;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+</Layout>
