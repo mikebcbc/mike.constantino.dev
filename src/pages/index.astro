@@ -1,17 +1,11 @@
 ---
-import { Image, Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import ImageOfMe from "../images/me.jpg";
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
 import Work from "../components/Work.astro";
+import RecentPosts from "../components/RecentPosts.astro";
 
-let allPosts = await getCollection("posts");
-allPosts.sort(
-  (a, b) =>
-    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
-);
-let recentPosts = allPosts.slice(0, 3);
 let socialMedia = [
   {
     url: "https://github.com/mikebcbc",
@@ -45,11 +39,11 @@ let socialMedia = [
         </h1>
         <h2 class="pt-4 text-2xl font-normal">
           software engineer coding for <a
-            class="underline transition-all hover:text-blue-600 hover:dark:text-blue-400"
+            class="hover:text-primary underline underline-offset-4 transition-all"
             href="https://github.com/mikebcbc"
             target="_blank">kicks</a
           > and <a
-            class="underline transition-all hover:text-blue-600 hover:dark:text-blue-400"
+            class="hover:text-primary underline underline-offset-4 transition-all"
             href="https://digitalocean.com"
             target="_blank">cash</a
           >
@@ -64,7 +58,7 @@ let socialMedia = [
               <a
                 href={sm.url}
                 target="_blank"
-                class="active:bg-base-300 mr-3 rounded-full pr-2 text-gray-100/50 transition-all hover:scale-105 hover:text-gray-200/75 active:scale-95  xl:mr-4 xl:pr-3"
+                class="hover:text-secondary mr-5 rounded-full transition-all hover:scale-105 xl:mr-6"
                 title={sm.name}
               >
                 <Icon
@@ -90,44 +84,7 @@ let socialMedia = [
     <div
       class="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2"
     >
-      <div>
-        <h2 class="mb-8 font-display text-3xl font-bold">Recent Articles</h2>
-        <div class="grid grid-rows-3 gap-10">
-          {
-            recentPosts.map((post) => (
-              <article class="md:grid md:grid-cols-4 md:items-baseline">
-                <div class="flex flex-col items-start md:col-span-3">
-                  <h2 class="text-lg font-semibold">
-                    <a href={`/blog/${post.slug}`}>
-                      <span>{post.data.title}</span>
-                    </a>
-                  </h2>
-                  <time
-                    class="relative order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-400 dark:text-zinc-500"
-                    datetime={post.data.pubDate}
-                  >
-                    <span class="absolute inset-y-0 left-0 flex items-center">
-                      <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                    </span>
-                    {new Date(post.data.pubDate).toLocaleDateString("en-us", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                  <p class="text-md relative mt-2">{post.data.description}</p>
-                </div>
-              </article>
-            ))
-          }
-        </div>
-        <a
-          rel="prefetch"
-          href="/blog"
-          class="mt-8 block text-blue-600 hover:underline dark:text-blue-400"
-          >See all articles →</a
-        >
-      </div>
+      <RecentPosts />
       <Work />
     </div>
   </section>

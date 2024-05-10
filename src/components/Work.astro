@@ -26,6 +26,7 @@ let work = [
     title: "Senior Software Engineer",
     dateStart: "2018",
     dateEnd: "2021",
+    invertLight: true,
   },
   {
     logo: skillfulImage,
@@ -43,10 +44,10 @@ let work = [
     {
       work.map((job) => (
         <li class="flex gap-4">
-          <div class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+          <div class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-neutral-200 dark:bg-neutral-800">
             <Image
               alt="DigitalOcean Logo"
-              class="h-7 w-7 rounded-full object-contain"
+              class=`h-7 w-7 rounded-full object-contain ${job.invertLight && "dark:invert-0 invert"}`
               src={job.logo}
               style="color: transparent;"
             />
