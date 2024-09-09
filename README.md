@@ -2,7 +2,7 @@
     <h1 align="center">mike.constantino.dev</h1>
 </p>
 <p align="center">
-    Personal wensite and blog site for Mike Constantino
+    Personal website and blog for Mike Constantino
 </p>
 <p align="center">
 		<em>Built with these tools and technologies:</em>
@@ -28,7 +28,7 @@
 
 ## 📍 Overview
 
-<code>❯ REPLACE-ME</code>
+My portfolio website, available at [mike.constantino.dev](https://mike.constantino.dev/), showcases my work and acts as a thought-dump for me. It features details about my professional experience, projects, and a blog where I write about random stuff. The site is built using modern web technologies - wanted to give Astro a shot, so here we are :).
 
 ---
 
