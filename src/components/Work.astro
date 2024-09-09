@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import doImage from "../images/work/digitalocean.svg";
+import metaImage from "../images/work/meta.svg";
+import prplImage from "../images/work/prpl.png";
+import skillfulImage from "../images/work/skillful.png";
+
+let work = [
+  {
+    logo: doImage,
+    company: "DigitalOcean",
+    title: "Senior Software Engineer I",
+    dateStart: "2021",
+    dateEnd: "Pres.",
+  },
+  {
+    logo: metaImage,
+    company: "Meta (Facebook)",
+    title: "Contract Engineer",
+    dateStart: "2020",
+    dateEnd: "2021",
+  },
+  {
+    logo: prplImage,
+    company: "Purple, Rock, Scissors",
+    title: "Senior Software Engineer",
+    dateStart: "2018",
+    dateEnd: "2021",
+    invertLight: true,
+  },
+  {
+    logo: skillfulImage,
+    company: "Web Develooper",
+    title: "Skillful Antics",
+    dateStart: "2015",
+    dateEnd: "2018",
+  },
+];
+---
+
+<div>
+  <h2 class="mb-8 font-display text-3xl font-bold">Work</h2>
+  <ol class="space-y-6">
+    {
+      work.map((job) => (
+        <li class="flex gap-4">
+          <div class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-neutral-200 dark:bg-neutral-800">
+            <Image
+              alt="DigitalOcean Logo"
+              class=`h-7 w-7 rounded-full object-contain ${job.invertLight && "dark:invert-0 invert"}`
+              src={job.logo}
+              style="color: transparent;"
+            />
+          </div>
+          <dl class="flex flex-auto flex-wrap gap-x-7">
+            <>
+              <dt class="sr-only">Company</dt>
+              <dd class="flex-none font-medium">{job.company}</dd>
+            </>
+            <>
+              <dt class="sr-only">Date</dt>
+              <dd class="ml-auto text-zinc-400 dark:text-zinc-500">
+                <time datetime={job.dateStart}>{job.dateStart}</time>
+                <span aria-hidden="true">—</span>
+                <time datetime={job.dateEnd}>{job.dateEnd}</time>
+              </dd>
+            </>
+            <>
+              <dt class="sr-only">Role</dt>
+              <dd class="w-full text-sm text-zinc-400 dark:text-zinc-500">
+                {job.title}
+              </dd>
+            </>
+          </dl>
+        </li>
+      ))
+    }
+  </ol>
+</div>

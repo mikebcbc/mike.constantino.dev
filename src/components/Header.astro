@@ -1,0 +1,17 @@
+---
+import Theme from "./Theme.astro";
+
+const { blog } = Astro.props;
+---
+
+<header
+  class={`container mx-auto ${blog ? "max-w-screen-lg" : "max-w-screen-xl"} p-4 flex justify-between items-center`}
+>
+  <a
+    rel="prefetch"
+    class="font-display text-3xl font-black hover:underline"
+    href="/"
+    transition:name="title">mike.constantino.dev</a
+  >
+  <div class="self-center" transition:name="theme"><Theme /></div>
+</header>

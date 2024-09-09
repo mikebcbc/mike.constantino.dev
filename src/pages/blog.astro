@@ -1,0 +1,82 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+// let allPosts = await Astro.glob("./blog/**/index.mdx");
+let allPosts = await getCollection("posts");
+allPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+const heroes = await import.meta.glob("./blog/**/hero.png");
+// await Promise.all(
+//   allPosts.map(async (post) => {
+//     post.frontmatter.hero = (await heroes[`.${post.url}/hero.png`]()).default;
+//   }),
+// );
+---
+
+<Layout title="Blog - Mike Constantino" description="Thoughts and what I'm working on.">
+  <main class="container mx-auto max-w-screen-xl">
+    <h1 class="pb-2 text-center font-display text-5xl font-bold">Blog</h1>
+    <p class="text-center">Thoughts and what I'm working on.</p>
+    <ul class="grid grid-cols-[repeat(auto-fit,_384px)] justify-center gap-8 p-8">
+      {
+        allPosts.map((post, index) => (
+          <article class="md:grid md:grid-cols-4 md:items-baseline">
+            <div class="flex flex-col items-start hover:text-primary md:col-span-3">
+              <h2 class="text-lg font-semibold transition-all">
+                <a href={`/blog/${post.slug}`}>
+                  <span>{post.data.title}</span>
+                </a>
+              </h2>
+              <time
+                class="relative order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
+                datetime={post.data.pubDate}
+              >
+                {new Date(post.data.pubDate).toLocaleDateString("en-us", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+              <p class="text-md relative mt-2 ">{post.data.description}</p>
+            </div>
+          </article>
+          // <li class="group card w-96 overflow-hidden rounded-xl bg-base-100 shadow transition-all hover:shadow-lg dark:bg-neutral">
+          //   <a rel="prefetch" href={`/blog/${post.slug}`} class="-outline-offset-4">
+          //   <!-- <Picture -->
+          //   <!--   transition:name={post.data.title} -->
+          //   <!--   formats={["avif", "webp", "jpeg"]} -->
+          //   <!--   class="loading-shimmer mb-6 mt-0 aspect-[16/9] w-full" -->
+          //   <!--   alt="" -->
+          //   <!--   widths={[1600, 800, 600, 400]} -->
+          //   <!--   sizes="(max-width: 800px) 100vw, 800px" -->
+          //   <!--   src={post.data.image.url} -->
+          //   <!--   loading="eager" -->
+          //   <!-- /> -->
+          //     <div class="card-body p-6">
+          //       <h2
+          //         transition:name={post.data.title + "-title"}
+          //         class="card-title line-clamp-3 font-display group-hover:underline"
+          //       >
+          //         {post.data.title}
+          //       </h2>
+          //       <div class="flex items-center">
+          //         <span transition:name={post.data.title + "-date"}>
+          //           {new Date(post.data.pubDate).toLocaleDateString("en-us", {
+          //             year: "numeric",
+          //             month: "short",
+          //             day: "numeric",
+          //           })}
+          //         </span>
+          //         <span class="divider divider-horizontal mx-0" />
+          //       </div>
+          //       <p transition:name={post.data.title + "-description"}>
+          //         {post.data.description}
+          //       </p>
+          //     </div>
+          //   </a>
+          // </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>

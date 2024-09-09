@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+
+let allPosts = await getCollection("posts");
+allPosts.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+let recentPosts = allPosts.slice(0, 3);
+---
+
+<div>
+  <h2 class="mb-8 font-display text-3xl font-bold">Recent Articles</h2>
+  <div class=`grid grid-rows-${recentPosts.length > 2 ? 3 : recentPosts.length} gap-6`>
+    {
+      recentPosts.map((post) => (
+        <article class="md:grid md:grid-cols-4 md:items-baseline">
+          <div class="flex flex-col items-start transition-all hover:text-primary md:col-span-3">
+            <a href={`/blog/${post.slug}`}>
+              <time
+                class="order-first mb-2 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
+                datetime={post.data.pubDate}
+              >
+                {new Date(post.data.pubDate).toLocaleDateString("en-us", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+              <h2 class="text-lg font-semibold">
+                <span>{post.data.title}</span>
+              </h2>
+              <p class="text-md relative mt-1 ">{post.data.description}</p>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+  <!-- <a -->
+  <!--   rel="prefetch" -->
+  <!--   href="/blog" -->
+  <!--   class="text-tertiary hover:text-primary mt-8 block underline underline-offset-4 transition-all" -->
+  <!-- > -->
+  <!--   See all articles → -->
+  <!-- </a> -->
+</div>
