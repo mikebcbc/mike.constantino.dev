@@ -1,12 +1,30 @@
 ---
-pubDate: 2024/4/29
-title: Test Blog
-description: Test Desc
+pubDate: 2024/9/9
+title: Revamped Dotfiles Setup
+description: A quick dive into my evolving dotfiles setup, including my experience with Neovim, yabai for floating windows, and Zellij for session management.
 image: {
-  url: "./hero.png",
+  url: "./hero.jpg",
   alt: "test"
 }
 ---
 import BlogPicture from '../../../components/BlogPicture.astro'
 
-qwerty hi
+Over the past few months, I’ve been fine-tuning my workflow with a new dotfiles setup, and it’s completely transformed how I code. From Neovim to experimenting with yabai for floating window management, it's been a journey of optimizing speed and efficiency. I thought I would take the time to write a quick overview of the tools I’m using, how they’ve evolved, and the lessons I’ve picked up along the way. If you’re into any of the tools I mention here, or just curious about my setup, you can check it out [here](https://github.com/mikebcbc/dotfiles).
+
+## Neovim
+
+After falling into the Neovim config hole (which I am certain will never end), it's changed how I move around and thinkg about code pretty fundamentally. Moving around a codebase feels seamless now, and I feel way more organized and in control behind the wheel. One of the most powerful tools I’ve started using more frequently is the **quickfix list**. It's become my go-to for global find/replace tasks, and I often use it as a "to-do" list to keep track of things I need to tackle. Having that level of control has made navigating and managing large codebases much more efficient.
+
+Another key change I made was adjusting how I use AI code completion tools like Copilot or Supermaven. Initially, I relied on automatic suggestions, but I found that constantly having to analyze and correct the AI’s suggestions disrupted my flow. So, I switched to on-demand AI completion, which has been a much better fit for my style. Treating these tools as companions rather than relying on them has given me a smoother, and less disruptive workflow.
+
+## Floating Windows with Yabai
+I also started using yabai for window tiling, but I quickly realized a locked-in window layout just wasn’t my thing. Now, I use it to control floating windows, which has been a game changer. It can be a bit laggy since yabai processes all visible window positions since there is no pre-defined layout, but the ability to toggle focus between floating windows is worth it. I also setup commands to set floating windows on a grid so that I still have access to the "layout", just with less restrictions. Paired with skhd, my hands rarely touch the mouse anymore, and I love it.
+
+## Zellij for Session Management
+Another big win has been Zellij. While I still use Neovim sessions to save things like editor layout and cursor position, I now pair them with Zellij sessions to handle test commands, server commands, and higher-level multiplexer layout. This combo has been a game changer, allowing me to organize my workspace more effectively. The only downside is that the plugin ecosystem for Zellij is still early – not much to choose from yet. I've been thinking that this would be a good opportunity to dive into Rust and create some quality-of-life plugins myself.
+
+## Wrapping It Up
+This journey into refining my workflow with Neovim, yabai, and Zellij has really transformed how I approach coding. Each tool brings its own unique power and flexibility, making my development workflow smoother and more efficient. As I continue to learn and adapt, my setup will no doubt evolve, but these tools have become essential for now. If you’re exploring similar setups or just curious about my configuration, feel free to [check out my dotfiles](https://github.com/mikebcbc/dotfiles/tree/main) and experiment for yourself!
+
+> I’m always learning and adapting my tools, and this setup has made me much more productive. Feel free to explore my dotfiles repo if you're curious or reach out if you have any recommendations or just want to vibe on new ideas!
+
